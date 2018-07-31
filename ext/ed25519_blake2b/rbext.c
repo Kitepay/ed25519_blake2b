@@ -4,12 +4,19 @@
 
 VALUE cEd25519_Blake2b;
 
-VALUE ed25519_blake2b_public_key(VALUE self, VALUE secret_key) {
-  ed25519_public_key public_key;
-  int length;
-  ed25519_publickey(StringValueCStr(secret_key), public_key);
+VALUE ed25519_blake2b_public_key(VALUE self, VALUE rbSecret_key) {
+  Check_Type(rbSecret_key, T_STRING);
+  if (RSTRING_LEN(rbSecret_key) != 32) {
+    rb_raise(rb_eArgError, "The secret key must be 32 bytes in length");
+    return Qnil;
+  }
 
-  return rb_str_new2((unsigned char *) public_key);
+  unsigned char *secret_key = RSTRING_PTR(rbSecret_key);
+
+  ed25519_public_key public_key;
+  ed25519_publickey(secret_key, public_key);
+
+  return rb_str_new(public_key, 32);
 }
 
 void Init_ed25519_blake2b() {
