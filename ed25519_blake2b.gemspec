@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Ruby library for ed25519, but with blake2b as the hashing function.}
   spec.description   = %q{Ruby library for ed25519, but with blake2b as the hashing function as required by the Nano cryptocurrency.}
-  spec.homepage      = "https://github.com/meltingice/ed25519_blake2b"
+  spec.homepage      = "https://github.com/Kitepay/ed25519_blake2b"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.
